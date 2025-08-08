@@ -1,6 +1,8 @@
+
+let gridno = 1
 function tttGrid() {
     const grid = Array.from({ length: 3 }, () => 
-        Array.from({ length: 3 }, () => ' ')
+        Array.from({ length: 3 }, () => gridno ++)
     );
     
     for (let i = 0; i < 3; i++) {
@@ -16,4 +18,4 @@ function tttGrid() {
     }
 }
 
-tttGrid();
+tttGrid()

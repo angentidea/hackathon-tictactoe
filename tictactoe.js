@@ -34,8 +34,7 @@ let playerNameTwo = prompt("Player 2, Enter your name. ")
 let tossCall = prompt(`${playerNameOne}, call the toss! Please enter either heads or tails! `).trim().toLowerCase();
 
 function coinToss() {
-    const randomNum = Math.random()
-    if (randomNum < 0.5) {
+    if (Math.random() < 0.5) {
         return "heads";
     } else {
         return "tails";
@@ -44,7 +43,7 @@ function coinToss() {
 
 let tossWinner = ''                     
 let playerOneSymbol = ''               
-let playerTwoSymbol = ''              
+let playerTwoSymbol = ''
 
 function toss() {
     const result = coinToss();        
@@ -92,3 +91,15 @@ console.log(`Hello ${playerNameOne} and ${playerNameTwo}. Ready to play tic-tac-
 
 tttGrid();
 designOfGrid();
+
+let currentPlayer = ""
+let currentSymbol = ""
+
+if (tossWinner === playerNameOne) {
+    currentPlayer = playerNameOne
+    currentSymbol = playerOneSymbol
+} else {
+    currentPlayer = playerNameTwo
+    currentSymbol = playerTwoSymbol
+}
+

@@ -11,12 +11,13 @@ let playerNameTwo = prompt("Player 2, Enter your name. ")
 let tossCall = prompt(`${playerNameOne}, call the toss! Please enter either heads or tails! `).trim().toLowerCase();
 
 function coinToss() {
-    if (Math.random() < 0.5) {
+    const randomNum = Math.random()
+    if (randomNum < 0.5) {
         return "heads";
     } else {
         return "tails";
     }
-};
+};gti
 
 let tossWinner = ''
 

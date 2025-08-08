@@ -1,8 +1,20 @@
 const prompt = require('prompt-sync')();
 
-let board = ["", "", "", 
-             "", "", "",
-             "", "", "",]
+function tttGrid() {
+    const grid = Array.from({ length: 3 }, () =>
+        Array.from({ length: 3 }, () => ' ')
+    );
+    for (let i = 0; i < 3; i++) {
+        let rowStr = '|';
+        for (let j = 0; j < 3; j++) {
+            rowStr += ' ' + grid[i][j] + ' |'
+        }
+        console.log(rowStr);
+        if (i < 3 - 1) {
+            console.log('-' + '----'.repeat(3))
+        }
+    }
+};
 
 let playerNameOne = prompt("Player 1, Enter your name. ")
 
@@ -17,7 +29,7 @@ function coinToss() {
     } else {
         return "tails";
     }
-};gti
+};
 
 let tossWinner = ''
 
@@ -51,6 +63,7 @@ if (choice === 'o' || choice === 'noughts') {
 }
 
 
-console.log(`Hello ${playerNameOne} and ${playerNameTwo}. Ready to play tic-tac-toe?
-    To choose where to put your O or X please type a number from 1-9`)
+console.log(`Hello ${playerNameOne} and ${playerNameTwo}. Ready to play tic-tac-toe? To choose where to put your O or X please type a number from 1-9`)
+
+tttGrid();
 

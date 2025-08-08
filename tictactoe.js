@@ -1,14 +1,16 @@
 const prompt = require('prompt-sync')();
 
 let gridno = 1
+grid = []
+
 function tttGrid() {
-    grid = []
     for (let i = 0; i < 3; i++) {
     grid[i] = []
     for (let j = 0; j < 3; j++) {
         grid[i][j] = gridno++;
         }
     }
+    return grid
 }
 
 function designOfGrid(){
@@ -103,12 +105,18 @@ if (tossWinner === playerNameOne) {
     currentSymbol = playerTwoSymbol
 }
 
-function getCoords(playerMove) {
+let symbol = 'x'
+function getCoords(playerMove, symbol) {
     const val = playerMove - 1
     let row = Math.floor(val/3)
     let column = val % 3
-    return [row, column]
+
+    if (typeof grid[row][column] === 'string') {
+        console.log("Already chosen")
+    } else {
+        grid[row][column] = symbol
+    }
 }
 
-console.log(getCoords(playerMove));
+console.log(getCoords(playerMove, symbol));
 

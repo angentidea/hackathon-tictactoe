@@ -87,7 +87,7 @@ if (choice === 'noughts' || choice === 'o') {
     console.log(`Please type either 'noughts' or 'crosses' / 'O' or 'X'. `);
 }
 
-console.log(`Hello ${playerNameOne} and ${playerNameTwo}. Ready to play tic-tac-toe? To choose where to put your O or X please type a number from 1-9`)
+let playerMove = parseInt(prompt(`Hello ${playerNameOne} and ${playerNameTwo}. Ready to play tic-tac-toe? To choose where to put your O or X please type a number from 1-9. `))
 
 tttGrid();
 designOfGrid();
@@ -102,4 +102,13 @@ if (tossWinner === playerNameOne) {
     currentPlayer = playerNameTwo
     currentSymbol = playerTwoSymbol
 }
+
+function getCoords(playerMove) {
+    const val = playerMove - 1
+    let row = Math.floor(val/3)
+    let column = val % 3
+    return [row, column]
+}
+
+console.log(getCoords(playerMove));
 

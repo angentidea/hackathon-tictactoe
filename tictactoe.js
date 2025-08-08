@@ -1,20 +1,31 @@
 const prompt = require('prompt-sync')();
 
+let gridno = 1
 function tttGrid() {
-    const grid = Array.from({ length: 3 }, () =>
-        Array.from({ length: 3 }, () => ' ')
-    );
+    grid = []
+    for (let i = 0; i < 3; i++) {
+    grid[i] = []
+    for (let j = 0; j < 3; j++) {
+        grid[i][j] = gridno++;
+        }
+    }
+}
+
+function designOfGrid(){
+
     for (let i = 0; i < 3; i++) {
         let rowStr = '|';
         for (let j = 0; j < 3; j++) {
             rowStr += ' ' + grid[i][j] + ' |'
         }
-        console.log(rowStr);
+        console.log(rowStr)
+    
         if (i < 3 - 1) {
             console.log('-' + '----'.repeat(3))
         }
     }
-};
+}
+
 
 let playerNameOne = prompt("Player 1, Enter your name. ")
 
@@ -31,39 +42,53 @@ function coinToss() {
     }
 };
 
-let tossWinner = ''
+let tossWinner = ''                     
+let playerOneSymbol = ''               
+let playerTwoSymbol = ''              
 
 function toss() {
-    if (tossCall === coinToss()) {
-        let tossWinner = playerNameOne
+    const result = coinToss();        
+    console.log(`The coin landed on ${result}.`)
+
+    if (tossCall === result) {
+        tossWinner = playerNameOne     
         console.log(`${tossWinner} wins! You may choose first!`)
-    } else if (tossCall !== coinToss) {
-        let tossWinner = playerNameTwo
+    } else if (tossCall === "heads" || tossCall === "tails") { 
+        tossWinner = playerNameTwo     
         console.log(`${tossWinner} wins! You may choose first!`)
     } else {
-        console.log(`Please enter 'heads' or tails' `);
+        console.log(`Please enter 'heads' or 'tails' `);
     };
     return tossWinner
 }
 
 toss();
 
-let choice = prompt(`${tossWinner} would you like to be noughts or crosses? `).trim().toLowerCase();
+let choice = prompt(`${tossWinner} Would you like to be noughts or crosses? `).trim().toLowerCase();
 
-if (choice === 'o' || choice === 'noughts') {
-    const playerOneSelection = 'O'
-    const playerTwoSelection = 'X'
-    console.log(`You are ${playerOneSelection}, and ${playerNameTwo} you are ${playerTwoSelection}`);
-} else if (choice === 'x'|| choice === 'crosses') {
-    const playerOneSelection = 'X'
-    const playerTwoSelection ='O'
-    console.log(`You are ${playerOneSelection}, and ${playerNameTwo} you are ${playerTwoSelection}`);
+if (choice === 'noughts' || choice === 'o') {
+    if (tossWinner === playerNameOne) {           
+        playerOneSymbol = 'O';                    
+        playerTwoSymbol = 'X';                    
+    } else {
+        playerTwoSymbol = 'O';                    
+        playerOneSymbol = 'X';                   
+    }
+    console.log(`${playerNameOne} is ${playerOneSymbol}. ${playerNameTwo} is ${playerTwoSymbol}.`);
+} else if (choice === 'crosses' || choice === 'x') {
+    if (tossWinner === playerNameOne) {        
+        playerOneSymbol = 'X';                  
+        playerTwoSymbol = 'O';                    
+    } else {
+        playerTwoSymbol = 'X';               
+        playerOneSymbol = 'O';                
+    }                                          
+    console.log(`${playerNameOne} is ${playerOneSymbol}. ${playerNameTwo} is ${playerTwoSymbol}.`);
 } else {
-    console.log(`Please type either 'noughts' or 'crosses' /'O' or 'X'. `);
+    console.log(`Please type either 'noughts' or 'crosses' / 'O' or 'X'. `);
 }
-
 
 console.log(`Hello ${playerNameOne} and ${playerNameTwo}. Ready to play tic-tac-toe? To choose where to put your O or X please type a number from 1-9`)
 
 tttGrid();
-
+designOfGrid();
